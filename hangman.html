@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Виселица!</title>
+</head>
+
+<body>
+    <h1>Виселица!</h1>
+	<script>
+
+        // придумываем слова для игры
+		let words = [
+            "программа",
+            "макака",
+            "прекрасный",
+            "оладушек",
+            "кнопка",
+            "дикобраз",
+            "инопланетянин",
+            "лисолень",
+            "тролль",
+            "волжаночка"
+        ];
+        // выбираем случайное слово из массива выше
+        let word = words[Math.floor(Math.random() * words.length)];
+        // создаем пустой массив с длиной слова вида ["_", "_", и тд]
+        let answerArray = [];
+        for (let i = 0; i < word.length; i++) {
+            answerArray[i] = "_";
+        }
+        // переменная для оставшихся в слове букв
+        let remainingLetters = word.length;
+        // основной цикл для игры
+        // выполняется, пока длина слова > 0
+        while (remainingLetters > 0) {
+            // тут показываем угаданные буквы в слове
+            alert(answerArray.join(" "));
+            // тут спрашиваем новую букву
+            let guess = prompt("Угадайте букву, или нажмите Отмена для выхода из игры.");
+            // если отмена = выход из цикла
+            if (guess === null) {
+                break;
+            // если 0 букв или больше 1 
+            } else if (guess.length !== 1) {
+                alert("Пожалуйста, введите одиночную букву.");
+            // если одна буква - продолжаем цикл
+            } else {
+                for (let j = 0; j < word.length; j++) {
+                    if (word[j] === guess) {
+                        answerArray[j] = guess;
+                        // уменьшаем количество оставшихся букв
+                        remainingLetters--;
+                    }
+                }
+            }
+        // конец основного цикла
+        }
+        // отображаем ответ и поздравляем игрока
+        alert(answerArray.join(" "));
+        alert("Отлично! Было загадано слово " + word);
+    
+	</script> 
+</body>
+
+</html>
